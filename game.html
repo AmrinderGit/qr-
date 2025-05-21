@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Cute Quiz 💑</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #fff0f5;
+      color: #333;
+      text-align: center;
+      padding: 20px;
+    }
+    .quiz-box {
+      max-width: 600px;
+      margin: auto;
+      background-color: #ffe6f0;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(255, 105, 180, 0.2);
+    }
+    h1 {
+      color: #ff4d94;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .options button {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 20px;
+      background-color: #ff80bf;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .options button:hover {
+      background-color: #ff4d94;
+    }
+    .message {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #ff3385;
+    }
+    #finalMessage {
+      margin-top: 30px;
+      font-size: 20px;
+      color: #cc0066;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-box">
+    <h1>💘 Cute & Funny Couple Quiz</h1>
+    <div id="quiz"></div>
+    <div id="finalMessage" class="hidden"></div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        q: "Where did we first meet?",
+        options: ["School", "shop", "online"],
+        answer: "shop",
+        message: "Aww yes! That was the cutest talk ever 💬💖"
+      },
+      {
+        q: "What do I call you the most?",
+        options: ["Cutie", "Baby", "Boss Lady"],
+        answer: "baby",
+        message: "Because you're my forever cutie pie! 🥧💘"
+      },
+      {
+        q: "What's your superpower?",
+        options: ["Sleeping 12 hrs", "Laughing non-stop", "Being adorable"],
+        answer: "Being adorable",
+        message: "Correct! You literally melt hearts 😍"
+      },
+      {
+        q: "What's our go-to plan when we're lazy?",
+        options: ["Movie + snacks", "Gym date", "Read poems"],
+        answer: "Movie + snacks",
+        message: "Hehe classic us: Netflix and noms 🍿❤️"
+      },
+      {
+        q: "What's my favorite thing about you?",
+        options: ["Your voice", "Your face", "Your soul"],
+        answer: "Your soul",
+        message: "You're beautiful inside out 🫶✨"
+      },
+      {
+        q: "What would we do on Mars together?",
+        options: ["Dance with aliens", "Kiss in low gravity", "Open a chai stall"],
+        answer: "Kiss in low gravity",
+        message: "A floating kiss? 10/10 would recommend 💋🚀"
+      },
+      {
+        q: "What do we fight about most?",
+        options: ["Food choices", "Who’s cuter", "Chai vs Coffee"],
+        answer: "Who’s cuter",
+        message: "Spoiler: It's YOU. Always you 🥺💕"
+      },
+      {
+        q: "what is yur fav color..",
+        options: ["black","pink","blue"],
+        answer: "black",
+        message: "hello wifeyyy i love you "
+      },
+      {
+        q: "What’s my reaction when you’re mad?",
+        options: ["Panic & apologize", "Start dancing", "Send memes"],
+        answer: "Panic & apologize",
+        message: "Humor heals, right? 😅❤️"
+      },
+      {
+        q: "What should we do forever?",
+        options: ["Travel the world", "Annoy each other", "Be in love"],
+        answer: "Be in love",
+        message: "Forever and always 💑💖"
+      }
+    ];
+
+    let currentQuestion = 0;
+
+    function loadQuestion() {
+      const quizDiv = document.getElementById('quiz');
+      const q = questions[currentQuestion];
+      quizDiv.innerHTML = `
+        <div class="question">
+          <h3>${currentQuestion + 1}. ${q.q}</h3>
+          <div class="options">
+            ${q.options.map(opt => `<button onclick="checkAnswer('${opt}')">${opt}</button>`).join('')}
+          </div>
+          <div id="message" class="message"></div>
+        </div>
+      `;
+    }
+
+    function checkAnswer(selected) {
+      const q = questions[currentQuestion];
+      const messageDiv = document.getElementById("message");
+      if (selected === q.answer) {
+        messageDiv.innerText = q.message;
+        setTimeout(() => {
+          currentQuestion++;
+          if (currentQuestion < questions.length) {
+            loadQuestion();
+          } else {
+            document.getElementById("quiz").innerHTML = "";
+            document.getElementById("finalMessage").innerHTML = "🎉 You finished! You're the cutest teammate ever 💖";
+            document.getElementById("finalMessage").classList.remove("hidden");
+          }
+        }, 2000);
+      } else {
+        messageDiv.innerText = "Oops! Try again, love 🥺";
+      }
+    }
+
+    // Start quiz
+    loadQuestion();
+  </script>
+</body>
+</html>
